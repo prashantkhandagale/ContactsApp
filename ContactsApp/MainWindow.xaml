@@ -1,0 +1,34 @@
+﻿<Window x:Class="ContactsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ContactsApp.ViewModels"
+        xmlns:view="clr-namespace:ContactsApp.Views"
+        Title="MainWindow" Height="600" Width="600">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:MainMenuViewModel}">
+            <view:MainMenu></view:MainMenu>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:ManageContactsViewModel}">
+            <view:ListContacts></view:ListContacts>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:AddUpdateViewModel}">
+            <view:AddContacts></view:AddContacts>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    
+                </Grid.RowDefinitions>
+                <Border BorderThickness="1" Background="Navy" Grid.Row="0">
+                    <TextBlock Text="{Binding Header}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="20"></TextBlock>
+                </Border>
+               
+                <ContentControl Content="{Binding CurrentView}"  Grid.Row="1"></ContentControl>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
